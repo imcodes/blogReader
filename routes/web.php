@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontpageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/',[FrontpageController::class,'index'])->name('home');
+Route::get('/about',[FrontpageController::class,'about_me'])->name('about-me');
+
