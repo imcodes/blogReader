@@ -23,7 +23,7 @@ Route::get('/term_and_conditions',[FrontpageController::class,'tANDc'])->name('t
 Route::get('/post-element',[FrontpageController::class,'postElement'])->name('postElement');
 Route::get('/post-details',[ PostController::class,'post'])->name('post-detail');
 Route::get('/search-results',[ PostController::class,'search'])->name('search-result');
-Route::get('/admin',function(){
+Route::get('/admin-page',function(){
     return view('admin.index');
-})->name('search-result');
+})->name('admin');
 
