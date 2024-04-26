@@ -26,4 +26,13 @@ Route::get('/search-results',[ PostController::class,'search'])->name('search-re
 Route::get('/admin-page',function(){
     return view('admin.index');
 })->name('admin');
+Route::get('/element-page',function(){
+    return view('admin.basic_elements');
+})->name('element');
+Route::get('/login',function(){
+    return view('admin.auth.login');
+})->name('login');
+Route::get('/signup',function(){
+    return view('admin.auth.signup');
+})->name('signup');
 
