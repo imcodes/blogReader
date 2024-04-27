@@ -12,7 +12,7 @@ class FrontpageController extends Controller
         return view('index',compact(['pageDescription']));
     }
 
-    public function about_me(){
+    public function aboutMe(){
         $pageTitle = 'About Me';
         $pageDescription = 'Get to know me more';
 
@@ -25,10 +25,8 @@ class FrontpageController extends Controller
     public function privatePolicy(){
         return view('frontpages.privacy-policy');
     }
-    public function tANDc(){
+    public function tAndC(){
         return view('frontpages.terms-conditions');
     }
-    public function postElement(){
-        return view('post-elements');
-    }
+  
 }

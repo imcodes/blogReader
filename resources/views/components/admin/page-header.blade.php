@@ -4,6 +4,7 @@
         <i class="mdi mdi-home"></i>
         </span> @yield('page-title','Dashboard')
     </h3>
+    @stack('buttons')
     <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">
@@ -12,4 +13,5 @@
         @stack('breadcrumb')
         </ul>
     </nav>
+    
     </div>

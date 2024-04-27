@@ -7,6 +7,7 @@
 <!-- end of banner -->
 
 @section('content')
+
 <section class="section pb-0">
   <div class="container">
     <div class="row">

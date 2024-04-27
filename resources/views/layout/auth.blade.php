@@ -1,10 +1,11 @@
+@props(['pageTitle'=>'Authentication'])
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>{{env('APP_NAME')}} | {{$pageTitle}} </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="admin/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="admin/assets/vendors/css/vendor.bundle.base.css">
@@ -33,10 +34,8 @@
                         @stack('auth-title')
                     </h4>
 
-                    <form class="forms-sample" method="POST">
-                        @csrf
-                @yield('form')
-                 </form>
+                    @yield('form')
+                    
              </div>
             </div>
             </div>
