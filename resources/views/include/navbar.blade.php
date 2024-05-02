@@ -7,7 +7,7 @@
       <ul class="navbar-nav mx-auto">
         <li class="nav-item dropdown">
           <a class="nav-link" href="{{ route('home') }}" >
-             <i class="ti-home ml-1"></i>
+             <i class="ti-home ml-1" style="font-size:1.2rem"></i>
           </a>
           
         </li>
@@ -60,7 +60,7 @@
         <li class="nav-item">
             <form action="{{route('logout')}}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-primary btn-sm text-white">logout</button>
+                <button type="submit" role="button" class="btn btn-primary btn-sm text-light p-1 px-2 mt-3">logout</button>
             </form>
         </li>
         @endauth
