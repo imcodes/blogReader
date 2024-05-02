@@ -26,7 +26,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
+          <a class="nav-link" href="{{route('contacts')}}">Contact</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -35,34 +35,35 @@
           </a>
           <div class="dropdown-menu">
             
-            <a class="dropdown-item" href="author.html">Author</a>
+            {{-- <a class="dropdown-item" href="author.html">Author</a> --}}
             
-            <a class="dropdown-item" href="author-single.html">Author Single</a>
+            {{-- <a class="dropdown-item" href="author-single.html">Author Single</a> --}}
 
-            <a class="dropdown-item" href="advertise.html">Advertise</a>
+            {{-- <a class="dropdown-item" href="advertise.html">Advertise</a> --}}
             
-            <a class="dropdown-item" href="post-details.html">Post Details</a>
+            {{-- <a class="dropdown-item" href="{{ route('blog-detail')}}">Post Details</a> --}}
             
-            <a class="dropdown-item" href="post-elements.html">Post Elements</a>
+            {{-- <a class="dropdown-item" href="post-elements.html">Post Elements</a> --}}
             
-            <a class="dropdown-item" href="tags.html">Tags</a>
-
-            <a class="dropdown-item" href="search-result.html">Search Result</a>
-
-            <a class="dropdown-item" href="search-not-found.html">Search Not Found</a>
+            {{-- <a class="dropdown-item" href="t">Tags</a> --}}
+            {{-- <a class="dropdown-item" href="search-not-found.html">Search Not Found</a> --}}
             
-            <a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a>
+            <a class="dropdown-item" href="{{route('privacy_policy')}}">Privacy Policy</a>
             
-            <a class="dropdown-item" href="terms-conditions.html">Terms Conditions</a>
-
-            <a class="dropdown-item" href="404.html">404 Page</a>
+            <a class="dropdown-item" href="{{route('term-and-conditions')}}">Terms Conditions</a>
             
           </div>
         </li>
 
+    
+        @auth
         <li class="nav-item">
-          <a class="nav-link" href="shop.html">Shop</a>
+            <form action="{{route('logout')}}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-primary btn-sm text-white">logout</button>
+            </form>
         </li>
+        @endauth
       </ul>
     </div>
 
@@ -81,5 +82,12 @@
         <i class="ti-menu"></i>
       </button>
     </div>
+
+    {{-- @guest --}}
+        
+   
+    {{-- @endguest --}}
+    {{-- {{route('logout')}} --}}
+    {{-- @endauth --}}
 
   </nav>

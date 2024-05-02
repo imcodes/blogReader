@@ -3,7 +3,10 @@
     @push('auth-title')
     Login
     @endpush
-      <x-form.form action=''>
+      <x-form.form action='{{ route('validate-sign-in') }}'>
+        @error('email')
+            <span></span>
+        @enderror
         <x-form.input label="email" type="email" placeholder="your email e.g example@gmail.com" name="email"/>
         <x-form.input label="password" type="password" placeholder="password" name="password" />
         <x-form.remember/>
