@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('user_role')->default('user');
-            $table->integer('user_level')->comment('determines what the user can do on the website[0=super admin | 1=regular admin | 2=moderator | 3=community manager | 4=authors |   5=users]');
+            $table->integer('user_level')->default(5)->comment('determines what the user can do on the website[0=super admin | 1=regular admin | 2=moderator | 3=community manager | 4=authors |   5=users]');
         });
     }
 
