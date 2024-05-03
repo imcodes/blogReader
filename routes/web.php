@@ -35,7 +35,7 @@ Route::get('/about',[FrontpageController::class,'aboutMe'])->name('about-me');
 Route::get('/contacts',[FrontpageController::class,'contacts'])->name('contacts');
 Route::get('/private-policy',[FrontpageController::class,'privatePolicy'])->name('privacy_policy');
 Route::get('/term_and_conditions',[FrontpageController::class,'tAndC'])->name('term-and-conditions');
-Route::get('/blog-details',[ PostController::class,'blog'])->name('blog-detail');
+Route::get('/blog-details',[ PostController::class,'post'])->name('blog-detail');
 Route::get('/search-results',[ PostController::class,'search'])->name('search-result');
 //END OF FRONTEND ROUTES
 

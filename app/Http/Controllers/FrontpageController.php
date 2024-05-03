@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FrontpageController extends Controller
 {
     public function index(){
         $pageDescription = 'Homepage Description';
+        $p = Blog::all();
 
         return view('index',compact(['pageDescription']));
     }

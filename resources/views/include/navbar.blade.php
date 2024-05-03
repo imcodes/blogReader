@@ -18,7 +18,7 @@
           </a>
           <div class="dropdown-menu">
             
-            <a class="dropdown-item" href="{{ route('about-me') }}">About Me</a>
+            <a class="dropdown-item" href="{{ route('about-me') }}">About us</a>
             
             {{-- <a class="dropdown-item" href="about-us.html">About Us</a> --}}
             
@@ -29,31 +29,31 @@
           <a class="nav-link" href="{{route('contacts')}}">Contact</a>
         </li>
 
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">Pages <i class="ti-angle-down ml-1"></i>
           </a>
           <div class="dropdown-menu">
             
-            {{-- <a class="dropdown-item" href="author.html">Author</a> --}}
+            <a class="dropdown-item" href="author.html">Author</a>
             
-            {{-- <a class="dropdown-item" href="author-single.html">Author Single</a> --}}
+            <a class="dropdown-item" href="author-single.html">Author Single</a>
 
-            {{-- <a class="dropdown-item" href="advertise.html">Advertise</a> --}}
+            <a class="dropdown-item" href="advertise.html">Advertise</a>
             
-            {{-- <a class="dropdown-item" href="{{ route('blog-detail')}}">Post Details</a> --}}
+            <a class="dropdown-item" href="{{ route('blog-detail')}}">Post Details</a>
             
-            {{-- <a class="dropdown-item" href="post-elements.html">Post Elements</a> --}}
+            <a class="dropdown-item" href="post-elements.html">Post Elements</a>
             
-            {{-- <a class="dropdown-item" href="t">Tags</a> --}}
-            {{-- <a class="dropdown-item" href="search-not-found.html">Search Not Found</a> --}}
+            <a class="dropdown-item" href="t">Tags</a>
+            <a class="dropdown-item" href="search-not-found.html">Search Not Found</a>
             
             <a class="dropdown-item" href="{{route('privacy_policy')}}">Privacy Policy</a>
             
             <a class="dropdown-item" href="{{route('term-and-conditions')}}">Terms Conditions</a>
             
           </div>
-        </li>
+        </li> --}}
 
     
         @auth
@@ -64,6 +64,14 @@
             </form>
         </li>
         @endauth
+        @guest
+          <li class="nav-item">
+              <a  href="{{route('sign-in')}}" role="button" class="btn btn-primary btn-sm text-light p-1 px-2 mt-3 mx-2">Sign in</a>
+        </li>
+          <li class="nav-item">
+                <a href="{{route('sign-up')}}" role="button" class="btn btn-primary btn-sm text-light p-1 px-2 mt-3 mx-2">Sign up</a>
+        </li>
+        @endguest
       </ul>
     </div>
 
