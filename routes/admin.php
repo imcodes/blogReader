@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::name('admin.')->group(function(){
+Route::name('admin.')->middleware(['auth','admin.regular','admin.super'])->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('dashboard');
     
     

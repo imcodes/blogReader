@@ -5,7 +5,7 @@
     @endpush
     @php $act=route('validate-sign-up'); @endphp
       <x-form.form :action="route('validate-sign-up')">
-        <x-form.input label="username" type="text" placeholder="username" name="name" value="{{old('username')}}">
+        <x-form.input label="username" type="text" placeholder="username" name="name" value="{{old('name')}}">
             @error('name')
                 <span style="color: red">{{$errors->first('name')}}</span>
             @enderror

@@ -25,6 +25,7 @@ class PostController extends Controller
     }
 
     public function createPost(){
-        return 'Create post';
+        $pagetitle = "Create New Post";
+        return  view('admin.post.create',['pageTitle'=>$pagetitle]);
     }
 }
