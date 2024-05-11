@@ -20,16 +20,32 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <span class="menu-title">Post</span>
+      <a class="nav-link" data-bs-toggle="collapse" href="#blog-links" aria-expanded="false" aria-controls="blog-links">
+        <span class="menu-title">Blogs</span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
       </a>
-      <div class="collapse" id="ui-basic">
+      <div class="collapse" id="blog-links">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{route('admin.post.index')}}"> View</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{route('admin.post.create')}}">Create</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{route('admin.category.index')}}">Category</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.index')}}"> View</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.create')}}">Create</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.category.index')}}">Category</a></li>
+
+          {{-- <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.category')}}">Category</a></li> --}}
+          {{-- <li class="nav-item"> <a class="nav-link" href="{{route('admin.control.user')}}">user</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.control.blog')}}">blogs</a></li> --}}
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#user-links" aria-expanded="false" aria-controls="user-links">
+        <span class="menu-title">User</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+      </a>
+      <div class="collapse" id="user-links">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.control.user')}}">user</a></li>
         </ul>
       </div>
     </li>

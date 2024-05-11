@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('featured_image');
             $table->string('title');
-            $table->string('body');
+            $table->string('blogBody');
             $table->integer('view_count');
             $table->boolean('editors_pick');
             $table->softDeletes();

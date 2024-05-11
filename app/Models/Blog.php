@@ -17,6 +17,7 @@ class Blog extends Model
         "user_id",
         "featured_image",
         "title",
+        "body",
         "description",
         "editors_pick",
         "view_count",

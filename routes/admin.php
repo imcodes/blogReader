@@ -6,18 +6,24 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::name('admin.')->middleware(['auth','admin.regular','admin.super'])->group(function(){
+Route::name('admin.')->middleware(['auth','admin.super'])->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('dashboard');
-    
-    
-    //POST ROUTES
-    Route::prefix('post')->name('post.')->group(function(){
-        Route::get('/',[AdminController::class,'posts'])->name('index');
+
+
+    //BLOG ROUTES
+    Route::prefix('blog')->name('blog.')->group(function(){
+        Route::get('/',[AdminController::class,'blog'])->name('index');
         Route::get('/create',[PostController::class,'createPost'])->name('create');
+
+        //CATEGORY SUB ROUTE
+        Route::prefix('category')->name('category.')->group(function(){
+            Route::get('/',[])->name('index');
+            Route::get('/create',[PostController::class,'createPost'])->name('create');
+        });
     });
 
-    //CATEGORY ROUTES
-    Route::prefix('category')->name('category.')->group(function(){
-        Route::get('/',[])->name('index');
+    Route::prefix('user')->name('control.')->group(function(){
+        Route::get('/',[AdminController::class,'users'])->name('user');
+        Route::get('/manage/{id}',[AdminController::class,'management_page']);
     });
 });

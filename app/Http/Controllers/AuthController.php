@@ -14,10 +14,10 @@ class AuthController extends Controller
 {
     //Signin method
     public function signIn(){
-        
+
             $pageTitle = 'Signin';
-        
-       
+
+
         return view('auth.login', compact(['pageTitle']));
     }
 
@@ -38,7 +38,7 @@ class AuthController extends Controller
     //Signup method
     public function signUp(){
         $pageTitle = 'SignUp';
-        
+
         return view('auth.signup',compact(['pageTitle']));
     }
 
@@ -60,7 +60,7 @@ class AuthController extends Controller
        if($auth){
          return redirect()->route('home');
        }
-       return back()->with('error','user already exists');
+       return redirect()->back()->with('status','user already exists');
     }
     public function logout(){
         Auth::logout();
