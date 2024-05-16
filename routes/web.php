@@ -23,6 +23,7 @@ Route::get('/signin',[AuthController::class,'signIn'])->name('sign-in');
 Route::post('/signin',[AuthController::class,'validateSignIn'])->name('validate-sign-in');
 Route::get('/signup',[AuthController::class,'signUp'])->name('sign-up');
 Route::post('/validate-sign-up',[AuthController::class,'validateSignUp'])->name('validate-sign-up');
+Route::post('/validate-sign-up',[AuthController::class,'validateSignUpAdmin'])->name('validate-sign-up-admin');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 
 Route::get('/forgotten-password',[AuthController::class,'forgottenPassword'])->name('forgoten-password');
@@ -58,6 +59,6 @@ Route::name('moderator.')->prefix('moderator')->middleware(['auth','admin.super'
         Route::get('/',[])->name('index');
     });
 });
-Route::delete('/delete/{id}',[administrationController::class,'deleteuser']);
+Route::delete('/delete/{id}',[administrationController::class,'deleteuser'])->name('deleteuser');
 
 

@@ -46,6 +46,7 @@ class PostController extends Controller
             session()->put('featured_image',$featuredIMG);
             session()->put('media_files',$media);
             $this->createblog($request,session('featured_image'));
+            return redirect()->route('admin.blog.create');
         }
 
         // $this->mediaFiles(session('media_files'));
@@ -57,7 +58,7 @@ class PostController extends Controller
                 'title' => 'max:255|required',
                 'blogBody' => 'max:700|required',
             ]);
-          $blog =  Blog::create([
+            $blog =  Blog::create([
                 'body' => $request->input('blogBody'),
                 'title' => $request->input('title'),
                 'featured_image' => $mediafile,
@@ -65,13 +66,11 @@ class PostController extends Controller
                 'veiw_count' => 0,
                 'editors_pick' => false
             ]);
-
-            if ($blog) {
-                
+            // dd($request);
                 session()->remove('featured_image');
                 session()->remove('media_files');
-                return view('index');
-            }
+                
+
 
     }
     public function mediaFiles(Request $request){

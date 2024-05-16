@@ -57,8 +57,29 @@ class AuthController extends Controller
         unset($incomingfields['confirm_password']);
         User::create($incomingfields);
         $auth = Auth::attempt($request->only('email','password'));
+        session()->put('role',Auth::user()->user_role);
+        session()->put('level',Auth::user()->user_level);
        if($auth){
          return redirect()->route('home');
+       }
+       return redirect()->back()->with('status','user already exists');
+    }
+    public function validateSignUpAdmin(Request $request){
+
+       $incomingfields = $this->validate($request ,
+            [
+            'email'=> 'required|email|unique:users',
+            'name'=> 'required|max:255',
+            'password'=>'required|min:8',
+            'confirm_password'=>'required|min:8|same:password'
+        ]);
+
+        $incomingfields['password'] = Hash::make($incomingfields['password']);
+        unset($incomingfields['confirm_password']);
+        $user = User::create($incomingfields);
+        // $auth = Auth::attempt($request->only('email','password'));
+       if($user){
+         return redirect()->route('admin.control.role',$user->id);
        }
        return redirect()->back()->with('status','user already exists');
     }

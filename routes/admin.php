@@ -25,5 +25,9 @@ Route::name('admin.')->middleware(['auth','admin.super'])->group(function(){
     Route::prefix('user')->name('control.')->group(function(){
         Route::get('/',[AdminController::class,'users'])->name('user');
         Route::get('/manage/{id}',[AdminController::class,'management_page']);
+        Route::get('/roles/{id}',[AdminController::class,'User_role'])->name('role');
+        Route::post('/submit_role/{id}',[AdminController::class,'submit_user_role']);
+        Route::get('/createuser',[AdminController::class,'createuser'])->name('createuser');
+        Route::post('/suspenduser/{id}',[AdminController::class,'suspend'])->name('suspend');
     });
 });

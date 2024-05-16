@@ -9,14 +9,14 @@
     <div class="card-body">
     <div class="table-container p-1">
             <table class="table table-stripe table-mobile">
-                <caption>Employee List</caption>
+                <caption>Users</caption>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>email</th>
                         <th>role</th>
                         <th>created_at</th>
-                        <th>____</th>
+                        <th></th>
                         {{-- <th>updated_at</th> --}}
                     </tr>
                 </thead>
@@ -28,12 +28,12 @@
                         <td data-cell="role">{{$user->user_role}}</td>
                         <td data-cell="created_at">{{$user->created_at}}</td>
                         <td class="d-flex">
-                            <form action="/delete/{{$user->id}}" method="POST">
+                            <form action="{{route('deleteuser',$user->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button class="btn btn-link text-danger p-2" title="delete user" type="submit"><i class='mdi mdi-delete'></i></button>
+                                <button class="btn btn-link text-danger p-2" title="Delete User" type="submit"><i class='mdi mdi-delete'></i></button>
                             </form>
-                            <a href="/admin-panel/user/manage/{{$user->id}}" class="btn btn-primary p-2 btn-sm "><i class="fas fa-optin-monster    "></i></a>
+                            <a href="/admin-panel/user/manage/{{$user->id}}" class="btn btn-link text-primary p-2 btn-sm " title="Manage User"><i class="mdi mdi-account-settings"></i></a>
                         </td>
                         {{-- <td data-cell="updated_at">{{$user->updated_at}}</td> --}}
                     </tr>
