@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" />
+    @stack('links')
   </head>
   <body>
     <div class="container-scroller">
@@ -47,7 +48,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    
+
     <!-- Plugin js for this page -->
     <script src="{{ asset('admin/assets/vendors/chart.js/Chart.min.js')}}"></script>
     <script src="{{ asset('admin/assets/js/jquery.cookie.js')}}" type="text/javascript"></script>

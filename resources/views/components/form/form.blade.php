@@ -7,5 +7,6 @@
 
 <form method="{{$method}}" action="{{$action}}"   enctype="{{$enctype}}" {{$attributes->merge(['class'=>$class])}}>
     @csrf
+    @method('POST')
     {{$slot}}
 </form>

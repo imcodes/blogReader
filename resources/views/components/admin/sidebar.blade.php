@@ -1,18 +1,4 @@
 <ul class="nav">
-    <li class="nav-item nav-profile">
-      <a href="#" class="nav-link">
-        <div class="nav-profile-image">
-          <img src="{{asset('admin/assets/images/faces/face1.jpg')}}" alt="profile">
-          <span class="login-status online"></span>
-          <!--change to offline or busy as needed-->
-        </div>
-        <div class="nav-profile-text d-flex flex-column">
-          <span class="font-weight-bold mb-2">David Grey. H</span>
-          <span class="text-secondary text-small">Project Manager</span>
-        </div>
-        <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-      </a>
-    </li>
     <li class="nav-item">
       <a class="nav-link" href="{{route('admin.dashboard')}}">
         <span class="menu-title">Dashboard</span>
@@ -20,16 +6,37 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <span class="menu-title">Post</span>
+      <a class="nav-link" data-bs-toggle="collapse" href="#blog-links" aria-expanded="false" aria-controls="blog-links">
+        <span class="menu-title">Blogs</span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
       </a>
-      <div class="collapse" id="ui-basic">
+      <div class="collapse" id="blog-links">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{route('admin.post.index')}}"> View</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{route('admin.post.create')}}">Create</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{route('admin.category.index')}}">Category</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.index')}}"> View</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.create')}}">Create</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.category.index')}}">Category</a></li>
+
+          {{-- <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.category')}}">Category</a></li> --}}
+          {{-- <li class="nav-item"> <a class="nav-link" href="{{route('admin.control.user')}}">user</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.control.blog')}}">blogs</a></li> --}}
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#user-links" aria-expanded="false" aria-controls="user-links">
+        <span class="menu-title">User</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+      </a>
+      <div class="collapse" id="user-links">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.control.user')}}">user</a></li>
+        </ul>
+      </div>
+      <div class="collapse" id="user-links">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.control.createuser')}}">Create user</a></li>
         </ul>
       </div>
     </li>

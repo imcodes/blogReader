@@ -23,7 +23,8 @@ class User extends Authenticatable
         'email',
         'password',
         'user_role',
-        'user_level'
+        'user_level',
+        'suspended'
     ];
 
     /**
@@ -44,6 +45,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'suspended'=>'boolean'
     ];
     public function blog($value):HasMany
     {
