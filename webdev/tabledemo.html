@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Demo</title>
+    <!--internal css/styling-->
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(66, 54, 54);
+        }
+        .content{
+            margin: auto;
+            width: 80vw;
+        }
+        .content > table{
+            margin-left:40% ;
+            width: 90%;
+            min-width: 350px;
+        }
+        .table th, .table td{
+            padding: 10px;
+            text-align:left ;
+        }
+        .table tr{
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+          tr:nth-child(even){
+            background-color: rgb(216, 224, 222);
+          padding: 20px;
+        }
+          td:first-child{
+            border-left: 1px solid white;
+        }
+         td:last-child{
+            border-right: 1px solid white;
+         }
+        h1{
+            text-align: center;
+            padding-left: 10px;
+        } 
+        .responsive{
+            width: 100%;
+            padding-left: 26.5%;
+            padding-top: 30px;
+        }
+        .table-stripped tbody tr:nth-child(odd){
+        padding-top: 30px;
+        }
+        /* text-allign: center */
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Table demo</h1>
+        <div class="responsive">
+
+            <table  cellspacing="0" class="table" >
+                <caption><b>List of qualified students</b></bList></caption>
+                <thead>
+                    <th>Full name</th>
+                    <th> Email </th>
+                    <th>Phone</th>
+                    <th>Course</th>
+                    <th>Age</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Malik</td>
+                        <td>malik@gmail.com</td>
+                        <td> +23470787663</td>
+                        <td >Computer science</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>jonhson</td>
+                        <td>johnson@gmail.com</td>
+                        <td>+23470787663</td>
+                        <td >business admin</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>onome</td>
+                        <td>onome@gmail.com</td>
+                        <td>+23470787663</td>
+                        <td>environmental science</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>favour</td>
+                        <td>faour@gmail.com</td>
+                        <td>+23470787663</td>
+                        <td >food science</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>tade</td>
+                        <td>adesola@gmail.com</td>
+                        <td>+23470787663</td>
+                        <td >Computer engineering</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>ladipo</td>
+                        <td>ladipo@gmail.com</td>
+                        <td>+23470787663</td>
+                        <td>Computer science</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td>daniel</td>
+                        <td>daniel@gmail.com</td>
+                        <td>+23470787663</td>
+                        <td>Computer science</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>ade</td>
+                        <td>malik@gmail.com</td>
+                        <td>+23470787663</td>
+                        <td>Computer science</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Malik</td>
+                        <td>malik@gmail.com</td>
+                        <td>+23470787663</td>
+                        <td>Computer science</td>
+                        <td>20</td>
+                    </tr>
+                        <tr style="background-color: aquamarine;">                    
+                            <td rowspan="3"  style="border-top: 1px black solid;border-left: 1px black solid; border-right: 1px solid  black ;">statistics</td>
+                            <td colspan="3" style="border-top: 1px black solid;">age</td>
+                            <td style="border-top: 1px black solid;">25</td>
+                        </tr>
+                        <tr style="background-color: aquamarine;" >
+                            <td colspan="3">Aerage age</td>
+                            <td></td>
+                        </tr>
+                        <tr style="background-color: bisque;">
+                            <td  colspan="3" title="mean age of best students of unilag">Mean Age</td>
+                            <td> 45 </td>
+                        </tr>
+                        <tr style="background-color: aquamarine;" >                            
+                            <td colspan="2" >Remark</td>
+                            <td colspan="4">this is a remark</td>
+                        </tr>                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

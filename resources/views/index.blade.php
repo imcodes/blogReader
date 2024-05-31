@@ -1,8 +1,11 @@
 @extends('layout.main')
-
+{{-- @dd($category) --}}
 <!-- start of banner -->
+@php
+    $category = implode(',',$category);
+@endphp
 @section('banner')
-  <x-homebanner/>
+  <x-homebanner data={{$category}} />
 @stop
 <!-- end of banner -->
 
@@ -15,16 +18,17 @@
         <h2 class="h5 section-title">Editors Pick</h2>
         <article class="card">
           <div class="post-slider slider-sm">
-            <img src="images/post/post-1.jpg" class="card-img-top" alt="post-thumb">
+            <img src="{{asset('storage/blogfiles/'.$editors_pick[0]->featured_image)}}" class="card-img-top" alt="post-thumb">
           </div>
-          
+
           <div class="card-body">
-            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">Use apples to give your bakes caramel and a moist texture</a></h3>
+            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{$editors_pick[0]->title}}</a></h3>
             <ul class="card-meta list-inline">
               <li class="list-inline-item">
                 <a href="author-single.html" class="card-meta-author">
                   <img src="images/john-doe.jpg">
-                  <span>Charls Xaviar</span>
+                  {{-- {{dd($editors_pick[0]->user)}} --}}
+                  <span>{{$editors_pick[0]->user->name}}</span>
                 </a>
               </li>
               <li class="list-inline-item">
@@ -34,21 +38,25 @@
                 <i class="ti-calendar"></i>14 jan, 2020
               </li>
               <li class="list-inline-item">
+                @php
+                    $category = $editors_pick[0]->category
+                @endphp
                 <ul class="card-meta-tag list-inline">
-                  <li class="list-inline-item"><a href="tags.html">Color</a></li>
-                  <li class="list-inline-item"><a href="tags.html">Recipe</a></li>
-                  <li class="list-inline-item"><a href="tags.html">Fish</a></li>
-                </ul>
+                        @foreach ($category as $item)
+
+                        <li class="list-inline-item"><a href="tags.html">{{$item->category_name}}</a></li>
+                        @endforeach
+                    </ul>
               </li>
             </ul>
-            <p>It’s no secret that the digital industry is booming. From exciting startups to …</p>
+            <p>{{substr($editors_pick[0]->body,20)}}...</p>
             <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
           </div>
         </article>
       </div>
       <div class="col-lg-4 mb-5">
         <h2 class="h5 section-title">Trending Post</h2>
-        
+
         <article class="card mb-4">
           <div class="card-body d-flex">
             <img class="card-img-sm" src="images/post/post-3.jpg">
@@ -65,7 +73,7 @@
             </div>
           </div>
         </article>
-        
+
         <article class="card mb-4">
           <div class="card-body d-flex">
             <img class="card-img-sm" src="images/post/post-2.jpg">
@@ -82,7 +90,7 @@
             </div>
           </div>
         </article>
-        
+
         <article class="card mb-4">
           <div class="card-body d-flex">
             <img class="card-img-sm" src="images/post/post-4.jpg">
@@ -100,10 +108,10 @@
           </div>
         </article>
       </div>
-      
+
       <div class="col-lg-4 mb-5">
         <h2 class="h5 section-title">Popular Post</h2>
-        
+
         <article class="card">
           <div class="post-slider slider-sm">
             <img src="images/post/post-5.jpg" class="card-img-top" alt="post-thumb">
@@ -148,7 +156,7 @@
     <div class="row justify-content-center">
         <div class="col-12 mb-5 mb-lg-0">
           <h2 class="h5 section-title">Recent Post</h2>
-          <div class="row">
+          {{-- <div class="row">
             <div class="col-lg-4 col-sm-6">
               <article class="card mb-4">
                 <div class="post-slider slider-sm">
@@ -182,7 +190,7 @@
                 </div>
               </article>
             </div>
-          
+
             <div class="col-lg-4 col-sm-6">
               <article class="card mb-4">
                 <div class="post-slider slider-sm">
@@ -249,7 +257,7 @@
                 </div>
               </article>
             </div>
-          
+
             <div class="col-lg-4 col-sm-6">
               <article class="card mb-4">
                 <div class="card-body">
@@ -310,7 +318,7 @@
                 </div>
               </article>
             </div>
-            
+
             <div class="col-lg-4 col-sm-6">
               <article class="card mb-4">
                 <div class="card-body">
@@ -340,7 +348,7 @@
                 </div>
               </article>
             </div>
-            
+
             <div class="col-lg-4 col-sm-6">
               <article class="card mb-4">
                 <div class="post-slider slider-sm">
@@ -407,7 +415,7 @@
                 </div>
               </article>
             </div>
-          
+
             <div class="col-lg-4 col-sm-6">
               <article class="card mb-4">
                 <div class="post-slider slider-sm">
@@ -440,9 +448,14 @@
                 </div>
               </article>
             </div>
-          </div>
+          </div> --}}
+
+          {{-- @dd($recentPost) --}}
+          <x-post-grid $post="$recentPost"/>
+          {{-- @component('post-grid', ['Post' => []]) @endcomponent --}}
+
   </div>
-  
+
 </div>
   </div>
 </section>

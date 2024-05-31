@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Blog;
+use App\Models\Category;
+use App\Http\Controllers\CategoryController;
+
 
 
 
@@ -30,10 +33,12 @@ class PostController extends Controller
     }
 
     public function createPost(){
+        $category = Category::get();
         $pagetitle = "Create New Post";
-        return  view('admin.post.create',['pageTitle'=>$pagetitle]);
+        return  view('admin.post.create',['pageTitle'=>$pagetitle,'category'=>$category]);
     }
     public function createblogmedia(Request $request){
+
 
         if($request->hasfile('featured_image') && $request->hasfile('media_files')){
             $imgfile = $request->file('featured_image');
@@ -45,13 +50,13 @@ class PostController extends Controller
             $mediafile->storeas("public/$targetPath", $media);
             session()->put('featured_image',$featuredIMG);
             session()->put('media_files',$media);
-            $this->createblog($request,session('featured_image'));
-            return redirect()->route('admin.blog.create');
+            $this->createblog($request,session('featured_image'),$request->category);
+            return redirect()->back();
         }
 
         // $this->mediaFiles(session('media_files'));
     }
-    public function createblog(Request $request,$mediafile){
+    public function createblog(Request $request,$mediafile,$category){
         // dd($request->input('blogBody'));
 
         $this->validate($request,[
@@ -69,7 +74,9 @@ class PostController extends Controller
             // dd($request);
                 session()->remove('featured_image');
                 session()->remove('media_files');
-                
+
+                $cat = new CategoryController();
+                $cat->Blog_category($blog->id,$category);
 
 
     }

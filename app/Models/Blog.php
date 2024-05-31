@@ -42,7 +42,7 @@ class Blog extends Model
     public function media_files(){
         return $this->hasMany(MediaFile::class);
     }
-    
+
     /**
      * scope prevent temporary deleted blogs from being sent to the frontend
      */

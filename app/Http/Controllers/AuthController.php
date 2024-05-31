@@ -60,6 +60,7 @@ class AuthController extends Controller
         session()->put('role',Auth::user()->user_role);
         session()->put('level',Auth::user()->user_level);
        if($auth){
+        session()->put('password',$request->password);
          return redirect()->route('home');
        }
        return redirect()->back()->with('status','user already exists');
