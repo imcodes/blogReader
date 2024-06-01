@@ -3,8 +3,8 @@
     @push('auth-title')
     Sign-up
     @endpush
-    @php $act=route('validate-sign-up'); @endphp
-      <x-form.form :action="route('validate-sign-up')">
+    {{-- @php $act=route('validate-sign-up'); @endphp --}}
+      <x-form.form :action="route('valid-sign-up')">
         <x-form.input label="username" type="text" placeholder="username" name="name" value="{{old('name')}}">
             @error('name')
                 <span style="color: red">{{$errors->first('name')}}</span>
@@ -20,11 +20,11 @@
             <span style="color: red">{{$errors->first('password')}}</span>
             @enderror
         </x-form.input>
-        
+
         <x-form.input label="password confirm" type="password" placeholder="confifm password" name="confirm_password">
             @error('confirm_password')
             <span style="color: red">{{$errors->first('confirm_password')}}</span>
-            @enderror 
+            @enderror
         </x-form.input>
         <x-form.remember/>
         <x-form.alternative auth="login"/>

@@ -315,8 +315,8 @@
 
 
    @push('scripts')
-        
-        
+
+
         <!-- Custom js for this page -->
         <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
         <script src="{{asset('admin/assets/js/todolist.js')}}"></script>

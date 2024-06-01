@@ -1,6 +1,7 @@
 @extends('layout.admin')
 @section('main')
-    <form action="/admin-panel/user/submit_role/{{$user->id}} " method="POST">
+<div class="card">
+ <form action=" {{ route('admin.control.submit_role',$user->id)}} " method="POST" class="card-body">
         @csrf
         <div class="form-group">
             <label for="role">select user role</label>
@@ -14,4 +15,5 @@
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+</div>
 @endsection

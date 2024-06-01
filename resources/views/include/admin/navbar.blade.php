@@ -1,6 +1,6 @@
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="{{asset('images/logo.png')}}" alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{asset('images/logo.png')}}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo" href="{{route('home')}}"><img src="{{asset('images/logo.png')}}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="{{route('home')}}"><img src="{{asset('images/logo.png')}}" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -24,7 +24,7 @@
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
-                  <p class="mb-1 text-black">{{Auth::user()->name}}</p>
+                  <p class="mb-1 text-black">{{ucwords(Auth::user()->name)}}</p>
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
