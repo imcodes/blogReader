@@ -5,6 +5,7 @@ use App\Http\Controllers\FrontpageController;
 use App\Http\Controllers\administrationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\profileController;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +41,7 @@ Route::get('/about',[FrontpageController::class,'aboutMe'])->name('about-me');
 Route::get('/contacts',[FrontpageController::class,'contacts'])->name('contacts');
 Route::get('/private-policy',[FrontpageController::class,'privatePolicy'])->name('privacy_policy');
 Route::get('/term_and_conditions',[FrontpageController::class,'tAndC'])->name('term-and-conditions');
-Route::get('/blog-details',[ PostController::class,'post'])->name('blog-detail');
+Route::get('/blog-details/{title}',[ PostController::class,'post'])->name('blog-details');
 Route::get('/search-results',[ PostController::class,'search'])->name('search-result');
 Route::get('/user-dashboard',[dashboardController::class,'index'])->name('user-dashboard');
 Route::post('/create-post',[PostController::class,'createblogmedia'])->name('createPost');
@@ -68,4 +69,4 @@ Route::delete('/delete/{id}',[administrationController::class,'deleteuser'])->na
 Route::get('/category/{name}',[CategoryController::class,'view_categories'])->name('category');
 Route::get('/author/{name}',[FrontpageController::class,'author'])->name('author');
 
-
+Route::post('/comment',[CommentController::class,'store'])->name('comment')->middleware('auth');

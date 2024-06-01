@@ -1,6 +1,6 @@
 @extends('layout.main')
 @section('banner')
-@dd($author)
+{{-- @dd($author) --}}
 <div class="author">
 	<div class="container">
 		<div class="row no-gutters justify-content-center">
@@ -10,15 +10,15 @@
 
 			</div>
 			<div class="col-md-8 col-lg-6 text-center text-md-left">
-				<h3 class="mb-2">Charls Xaviar</h2>
-					<strong class="mb-2 d-block">Author &amp; developer of Bexer, Biztrox theme</strong>
+				<h3 class="mb-2">{{$author[0]->name}}</h2>
+					<strong class="mb-2 d-block">{{ucwords($author[0]->user_role)}} &amp; creator of many post </strong>
 					<div class="content">
 						<p>Donec nisi dolor, consequat vel pretium id, auctor in dui. Nam iaculis, neque ac ullamcorper.</p>
 
 					</div>
 
-					<a class="post-count mb-1" href="author-single.html#post"><i class="ti-pencil-alt mr-2"></i><span
-							class="text-primary">2</span> Posts by this author</a>
+					<a class="post-count mb-1" href="#posts"><i class="ti-pencil-alt mr-2"></i><span
+							class="text-primary">{{count($blog)}}</span> Posts by this author</a>
 					<ul class="list-inline social-icons">
 
 						<li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
@@ -83,5 +83,39 @@
 </div>
 @endsection
 @section('content')
+<div class="container my-5" id="posts">
+    <div class="row ">
+        @foreach ($blog as $item)
 
+        {{-- <div class="col-lg-3 col-sm-12">
+            <article class="card mb-4">
+                <div class="post-slider slider-sm">
+                    <img src="{{asset('storage/blogfiles/'.$item->featured_image)}}" class="card-img-top" alt="post-thumb">
+              </div>
+              <div class="card-body">
+                <h3 class="h4 mb-3"><a class="post-title" href="post/elements/">{{ucwords($item->title)}}</a></h3>
+                <ul class="card-meta list-inline">
+                    <li class="list-inline-item">
+                        <a href="{{route('author',$item->user->name."_".$item->user->id)}}" class="card-meta-author">
+                            <img src="{{asset('images/john-doe.jpg')}}" alt="{{ucwords($item->user->name)}}">
+                            <span>{{ucwords($item->user->name)}}</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="ti-timer"></i>3 Min To Read
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="ti-calendar"></i>15 jan, 2020
+                    </li>
+
+            </ul>
+                <p>{{$item->body}}</p>
+                <a href="post/elements/" class="btn btn-outline-primary">Read More</a>
+            </div>
+        </article>
+        </div> --}}
+        @include('include.post-item',['post'=>$item])
+        @endforeach
+    </div>
+</div>
 @endsection

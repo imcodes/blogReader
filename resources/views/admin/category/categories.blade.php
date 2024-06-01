@@ -67,11 +67,10 @@
 <div class="row ">
 @foreach ($allblogs as $item)
 
-<div class="col-lg-3 col-sm-12">
+{{-- <div class="col-lg-3 col-sm-12">
     <article class="card mb-4">
         <div class="post-slider slider-sm">
             <img src="{{asset('storage/blogfiles/'.$item->featured_image)}}" class="card-img-top" alt="post-thumb">
-            {{-- <img src="{{asset('images/post/post-1.jpg')}}" class="card-img-top" alt="post-thumb"> --}}
       </div>
       <div class="card-body">
         <h3 class="h4 mb-3"><a class="post-title" href="post/elements/">{{ucwords($item->title)}}</a></h3>
@@ -94,7 +93,8 @@
         <a href="post/elements/" class="btn btn-outline-primary">Read More</a>
     </div>
     </article>
-</div>
+</div> --}}
+@include('include.post-item',['post'=>$item])
 @endforeach
 </div>
 </div>

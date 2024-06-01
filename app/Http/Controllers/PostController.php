@@ -14,8 +14,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function post(){
-        return view('post.post-details');
+    public function post($title){
+        $id = explode("_", $title);
+        $blog = Blog::with("user","category",'comment')->where("id", end($id))->get();
+        return view('post.post-details', compact(['blog']));
     }
     public function search(){
         return view('post.search-result');
@@ -61,7 +63,7 @@ class PostController extends Controller
 
         $this->validate($request,[
                 'title' => 'max:255|required',
-                'blogBody' => 'max:700|required',
+                'blogBody' => 'required',
             ]);
             $blog =  Blog::create([
                 'body' => $request->input('blogBody'),

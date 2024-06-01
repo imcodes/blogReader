@@ -11,7 +11,7 @@
             {{-- {{dd($category)}} --}}
             @foreach ($category as $item)
 
-            <li class="list-inline-item"><a href="{{route('category',$item)}}">{{ucwords($item)}}</a></li>
+            <li class="list-inline-item"><a href="{{route('category',$item)}}">{{slug_to_string(ucwords($item))}}</a></li>
             @endforeach
           </ul>
         </div>

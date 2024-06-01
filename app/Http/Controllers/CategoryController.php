@@ -14,6 +14,7 @@ class CategoryController extends Controller
 {
     public function category_page(){
        $Data = Category::with('blog')->orderBy('id','desc')->paginate(10);
+    //    dd($Data);
         return view('admin.category.index',compact(['Data']));
     }
     public function create_category(request $request){
@@ -22,6 +23,7 @@ class CategoryController extends Controller
             'category_name'=> 'required|min:5|max:50',
             'description'=> 'required|max:255'
         ]);
+        $incomingfeild['category_name'] = string_to_slug($incomingfeild['category_name']);
         $category = new Category();
        $create = $category->create($incomingfeild);
 
@@ -34,6 +36,7 @@ class CategoryController extends Controller
         DB::insert('INSERT INTO blog_category (blog_id,category_id) VALUES (?,?)',[$id,$category->id]);
     }
     public function delete_category($id){
+        DB::delete('DELETE FROM blog_category where category_id = ?',[$id]);
         $category = Category::find($id);
         $category->delete();
         return redirect()->back()->with('success','deleted successfully');

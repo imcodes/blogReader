@@ -1,12 +1,18 @@
 <?php
 
 use App\Http\Middleware\TrimStrings;
+use App\Models\User;
+
 
  function slug_to_string(string $string){
     return ucwords(str_replace("_"," ", trim($string)));
  }
  function string_to_slug(string $string){
     return ucwords(str_replace(" ","_", trim($string)));
+ }
+ function username($id){
+    $comment = User::where('id',$id)->get('name');
+    return ucwords($comment[0]->name);
  }
 //  function slug_to_string(string $string){
 //     $exp = explode("_", $string);
