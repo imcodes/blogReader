@@ -8,7 +8,7 @@
 -->
 
 <!-- /navigation -->
-{{-- @dd($blog[0]->comment) --}}
+{{-- @dd($blog[0]) --}}
 @php
     $comment = $blog[0]->comment;
 @endphp
@@ -39,7 +39,10 @@
               </li>
               <li class="list-inline-item">
                 <ul class="card-meta-tag list-inline">
-                  <li class="list-inline-item"><a href="tags.html">{{ucwords(slug_to_string($blog[0]->category[0]->category_name))}}</a></li>
+                    @if (count($blog[0]->category))
+
+                    <li class="list-inline-item"><a href="tags.html">{{ucwords(slug_to_string($blog[0]->category[0]->category_name))}}</a></li>
+                    @endif
                 </ul>
               </li>
             </ul>

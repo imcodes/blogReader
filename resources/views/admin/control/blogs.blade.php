@@ -14,7 +14,7 @@
 @endpush
 @section('main')
 <div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
+    <div class="card overflow-scroll w-100 w-md-full">
       <div class="card-body">
         <h4 class="card-title">New blogs</h4>
         <p class="card-description"> All blogs created by users

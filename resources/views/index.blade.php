@@ -1,5 +1,5 @@
 @extends('layout.main')
-{{-- @dd($category) --}}
+{{-- @dd($popularPosts) --}}
 <!-- start of banner -->
 @php
     $category = implode(',',$category);
@@ -56,15 +56,16 @@
       </div>
       <div class="col-lg-4 mb-5">
         <h2 class="h5 section-title">Trending Post</h2>
+        @foreach ($trendingPost as $item)
 
         <article class="card mb-4">
           <div class="card-body d-flex">
-            <img class="card-img-sm" src="images/post/post-3.jpg">
+            <img class="card-img-sm" src="{{asset('storage/blogfiles/'.$item->featured_image)}}">
             <div class="ml-3">
-              <h4><a href="post-details.html" class="post-title">Advice From a Twenty Something</a></h4>
+              <h4><a href="{{route('blog-details',$item->title.'_'.$item->id)}}" class="post-title">{{$item->title}}</a></h4>
               <ul class="card-meta list-inline mb-0">
                 <li class="list-inline-item mb-0">
-                  <i class="ti-calendar"></i>14 jan, 2020
+                  <i class="ti-calendar"></i>{{date('d M Y H:i:s',$item->created_at->timestamp)}}
                 </li>
                 <li class="list-inline-item mb-0">
                   <i class="ti-timer"></i>2 Min To Read
@@ -73,76 +74,51 @@
             </div>
           </div>
         </article>
-
-        <article class="card mb-4">
-          <div class="card-body d-flex">
-            <img class="card-img-sm" src="images/post/post-2.jpg">
-            <div class="ml-3">
-              <h4><a href="post-details.html" class="post-title">The Design Files - Homes Minimalist</a></h4>
-              <ul class="card-meta list-inline mb-0">
-                <li class="list-inline-item mb-0">
-                  <i class="ti-calendar"></i>14 jan, 2020
-                </li>
-                <li class="list-inline-item mb-0">
-                  <i class="ti-timer"></i>2 Min To Read
-                </li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="card mb-4">
-          <div class="card-body d-flex">
-            <img class="card-img-sm" src="images/post/post-4.jpg">
-            <div class="ml-3">
-              <h4><a href="post-details.html" class="post-title">The Skinny Confidential</a></h4>
-              <ul class="card-meta list-inline mb-0">
-                <li class="list-inline-item mb-0">
-                  <i class="ti-calendar"></i>14 jan, 2020
-                </li>
-                <li class="list-inline-item mb-0">
-                  <i class="ti-timer"></i>2 Min To Read
-                </li>
-              </ul>
-            </div>
-          </div>
-        </article>
+        @endforeach
       </div>
 
       <div class="col-lg-4 mb-5">
         <h2 class="h5 section-title">Popular Post</h2>
+        @php
+            $post = $popularPosts[0];
+        @endphp
 
-        <article class="card">
-          <div class="post-slider slider-sm">
-            <img src="images/post/post-5.jpg" class="card-img-top" alt="post-thumb">
-          </div>
-          <div class="card-body">
-            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">How To Make Cupcakes and Cashmere Recipe At Home</a></h3>
-            <ul class="card-meta list-inline">
-              <li class="list-inline-item">
-                <a href="author-single.html" class="card-meta-author">
-                  <img src="images/kate-stone.jpg" alt="Kate Stone">
-                  <span>Kate Stone</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <i class="ti-timer"></i>2 Min To Read
-              </li>
-              <li class="list-inline-item">
-                <i class="ti-calendar"></i>14 jan, 2020
-              </li>
-              <li class="list-inline-item">
-                <ul class="card-meta-tag list-inline">
-                  <li class="list-inline-item"><a href="tags.html">City</a></li>
-                  <li class="list-inline-item"><a href="tags.html">Food</a></li>
-                  <li class="list-inline-item"><a href="tags.html">Taste</a></li>
-                </ul>
-              </li>
-            </ul>
-            <p>It’s no secret that the digital industry is booming. From exciting startups to …</p>
-            <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-          </div>
-        </article>
+        {{-- @include('include.post-item',['post'=>$popularPosts[0]]) --}}
+        <article class="card mb-4">
+            <div class="post-slider slider-sm">
+              <img src="{{asset('storage/blogfiles/'.$post->featured_image)}}" class="card-img-top" alt="post-thumb">
+              {{-- <img src="images/post/post-1.jpg" class="card-img-top" alt="post-thumb"> --}}
+            </div>
+            <div class="card-body">
+              <h3 class="h4 mb-3"><a class="post-title" href="{{route('blog-details',$post->title.'_'.$post->id)}}">{{ucwords($post->title)}}</a></h3>
+              <ul class="card-meta list-inline">
+                <li class="list-inline-item">
+                  <a href="{{route('author',$post->user->name."_".$post->user->id)}}" class="card-meta-author">
+                    <img src="{{asset("images/john-doe.jpg")}}" alt="John Doe">
+                    <span>{{$post->user->name}}</span>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <i class="ti-timer"></i>3 Min To Read
+                </li>
+                <li class="list-inline-item">
+                  <i class="ti-calendar"></i>{{ date('d M Y - H:i:s', $post->created_at->timestamp) }}
+                </li>
+                <li class="list-inline-item">
+                 @if (count($post->category) > 0)
+                 <ul class="card-meta-tag list-inline">
+                  <li class="list-inline-item"><a href="{{route('category',$post->category[0]->category_name)}}">{{$post->category[0]->category_name}}</a></a></li>
+                  </ul>
+                  @else
+                  <span>uncatigorised</span>
+                 @endif
+
+                </li>
+              </ul>
+              <p>{!! substr($post->body,0,20) !!}...</p>
+              <a href="{{route('blog-details',$post->title.'_'.$post->id)}}" class="btn btn-outline-primary">Read More</a>
+            </div>
+          </article>
       </div>
       <div class="col-12">
         <div class="border-bottom border-default"></div>

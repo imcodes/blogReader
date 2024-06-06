@@ -82,8 +82,9 @@
       </select>
 
       <!-- search -->
-      <form class="search-bar">
-        <input id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
+      <form class="search-bar" action="{{route('search')}}" method="POST">
+        @csrf
+        <input id="search-query" name="keyword" type="search" placeholder="Type &amp; Hit Enter...">
       </form>
 
       <button class="navbar-toggler border-0 order-1" type="button" data-toggle="collapse" data-target="#navigation">

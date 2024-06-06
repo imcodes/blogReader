@@ -10,7 +10,7 @@
 
         @stack('headScripts')
     </head>
-    
+
 <body>
     @include('include.header')
 

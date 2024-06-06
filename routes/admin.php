@@ -19,6 +19,7 @@ Route::name('admin.')->middleware(['auth','admin.super'])->group(function () {
         Route::delete('/delete/{id}',[AdminController::class,'delete_blog'])->name('delete');
         Route::put('users/{id}',[AdminController::class,'update_blog'])->name('update');
         Route::put('editors_pick/{id}',[AdminController::class,'editors_pick'])->name('editors_pick');
+        Route::put('change_category/{name}',[PostController::class,'changeBlogCategory'])->name('change_category');
 
         //CATEGORY SUB ROUTE
         Route::prefix('category')->name('category.')->group(function(){

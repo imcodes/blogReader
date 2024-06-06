@@ -21,7 +21,7 @@ class CategoryController extends Controller
         // dd($request);
         $incomingfeild = $this->validate($request,[
             'category_name'=> 'required|min:5|max:50',
-            'description'=> 'required|max:255'
+            'description'=> 'max:255'
         ]);
         $incomingfeild['category_name'] = string_to_slug($incomingfeild['category_name']);
         $category = new Category();
