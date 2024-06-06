@@ -11,17 +11,22 @@ use App\Http\Controllers\CategoryController;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
     public function post($title){
         $id = explode("_", $title);
         $blog = Blog::with("user","category",'comment')->where("id", end($id))->get();
+        $view = new ViewersController();
+        // dd(Auth::user()->id);
+        $view->viewers($blog[0]->id);
+
         return view('post.post-details', compact(['blog']));
     }
-    public function search(){
-        return view('post.search-result');
-    }
+    // public function search(){
+    //     return view('post.search-result');
+    // }
     public function searchNotFound(){
         return view('post.search-not-found');
     }
@@ -82,7 +87,11 @@ class PostController extends Controller
 
 
     }
-    public function mediaFiles(Request $request){
-
+    public function changeBlogCategory($id, request $request){
+        // dd($request->name);
+        $category = Category::where('category_name',$request->name)->first();
+        // dd($category);
+        DB::update('UPDATE blog_category set category_id = ? where blog_id  = ?', [$category->id,$id]);
+        return redirect()->back();
     }
 }

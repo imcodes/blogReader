@@ -14,6 +14,7 @@ use App\Models\User;
     $comment = User::where('id',$id)->get('name');
     return ucwords($comment[0]->name);
  }
+
 //  function slug_to_string(string $string){
 //     $exp = explode("_", $string);
 //     return ucwords($exp[0])." ".ucwords($exp[1]);

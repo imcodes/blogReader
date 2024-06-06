@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class viewers extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'viewer_id',
+        'blog_id'
+    ] ;
 }

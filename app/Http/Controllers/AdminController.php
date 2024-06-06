@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\Hash;
@@ -41,7 +42,8 @@ class AdminController extends Controller
     }
     public function blogpage($id){
         $blog = Blog::with('user')->where('id',$id)->get();
-        return view('admin.control.blog',compact(['blog']));
+        $category = Category::get();
+        return view('admin.control.blog',compact(['blog','category']));
     }
     public function blog(){
        $users = DB::select("SELECT id from users where user_level > ?",[Auth::user()->user_level]);
