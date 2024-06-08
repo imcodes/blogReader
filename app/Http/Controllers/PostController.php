@@ -58,8 +58,8 @@ class PostController extends Controller
             session()->put('featured_image',$featuredIMG);
             session()->put('media_files',$media);
             $this->createblog($request,session('featured_image'),$request->category);
-            return redirect()->back();
         }
+        return redirect()->back();
 
         // $this->mediaFiles(session('media_files'));
     }

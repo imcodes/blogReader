@@ -17,9 +17,9 @@ class RegularAdmin
     public function handle(Request $request, Closure $next): Response
 
     {
-        $isAdmin = (Auth::user()->user_role == 'admin' && Auth::user()->user_level == 1) ? true : false;
+        $isAdmin = (Auth::user()->user_level <= 1) ? true : false;
         if(!$isAdmin){
-            return response('You are forbidden from accessing this resource','404');
+            return response('You are forbidden from accessing this resource'.' '.Auth::user()->user_role,'404');
         }
         return $next($request);
     }

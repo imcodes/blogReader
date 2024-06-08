@@ -16,8 +16,8 @@ class manager
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $isSuperAdmin = (Auth::user()->user_role == 'manager' && Auth::user()->user_level == 3) ? true : false;
-        if(!$isSuperAdmin){
+        $isManager = ( Auth::user()->user_level <= 3) ? true : false;
+        if(!$isManager){
             return response('You are forbidden from accessing this resource','404');
         }
         return $next($request);

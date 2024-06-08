@@ -16,8 +16,8 @@ class moderator
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $isSuperAdmin = (Auth::user()->user_role == 'moderator' && Auth::user()->user_level == 3) ? true : false;
-        if(!$isSuperAdmin){
+        $ismod = ( Auth::user()->user_level <= 2) ? true : false;
+        if(!$ismod){
             return response('You are forbidden from accessing this resource','404');
         }
         return $next($request);

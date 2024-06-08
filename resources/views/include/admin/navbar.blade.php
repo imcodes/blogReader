@@ -24,7 +24,9 @@
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
-                  <p class="mb-1 text-black">{{ucwords(Auth::user()->name)}}</p>
+                  <p class="mb-0 text-black">{{ucwords(Auth::user()->name)}}
+                    <span class="text-muted text-primary text-small py-1 d-block">{{ucwords(Auth::user()->user_role)}}</span>
+                </p>
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">

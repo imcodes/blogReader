@@ -10,8 +10,8 @@
 
 			</div>
 			<div class="col-md-8 col-lg-6 text-center text-md-left">
-				<h3 class="mb-2">{{$author[0]->name}}</h2>
-					<strong class="mb-2 d-block">{{ucwords($author[0]->user_role)}} &amp; creator of many post </strong>
+				<h3 class="mb-2">{{ucwords($author[0]->name)}}</h2>
+					<strong class="mb-2 d-block">{{ucwords(str_replace('_',' ',$author[0]->user_role))}} &amp; creator of many post </strong>
 					<div class="content">
 						<p>Donec nisi dolor, consequat vel pretium id, auctor in dui. Nam iaculis, neque ac ullamcorper.</p>
 
