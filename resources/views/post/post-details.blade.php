@@ -41,7 +41,7 @@
                 <ul class="card-meta-tag list-inline">
                     @if (count($blog[0]->category))
 
-                    <li class="list-inline-item"><a href="tags.html">{{ucwords(slug_to_string($blog[0]->category[0]->category_name))}}</a></li>
+                    <li class="list-inline-item"><a href="{{route('category',$blog[0]->category[0]->category_name)}}">{{ucwords(slug_to_string($blog[0]->category[0]->category_name))}}</a></li>
                     @endif
                 </ul>
               </li>

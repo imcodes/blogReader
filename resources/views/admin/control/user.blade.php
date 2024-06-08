@@ -52,7 +52,7 @@
               </button>
             </div>
             <div class="formbody">
-            <form action="{{route('deleteuser',$id)}}" method="POST">
+            <form action="{{route('admin.control.deleteuser',$id)}}" method="POST">
             <div class="modal-body">
                     @method('DELETE')
                     @csrf
@@ -69,7 +69,7 @@
       <script>
         let setdel = (id) =>{
             document.querySelector('.formbody').innerHTML =
-            `<form action='/delete/${id}' method="POST">
+            `<form action='/admin-panel/user/delete/${id}' method="POST">
                 <div class="modal-body">
              @method('DELETE')
              @csrf

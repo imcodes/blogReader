@@ -16,8 +16,8 @@ class author
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $isSuperAdmin = (Auth::user()->user_role == 'author' && Auth::user()->user_level == 4) ? true : false;
-        if(!$isSuperAdmin){
+        $isAuthor = (Auth::user()->user_level <= 4) ? true : false;
+        if(!$isAuthor){
             return response('You are forbidden from accessing this resource','404');
         }
         return $next($request);

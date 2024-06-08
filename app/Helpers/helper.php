@@ -5,10 +5,10 @@ use App\Models\User;
 
 
  function slug_to_string(string $string){
-    return ucwords(str_replace("_"," ", trim($string)));
+    return str_replace("_"," ", trim($string));
  }
  function string_to_slug(string $string){
-    return ucwords(str_replace(" ","_", trim($string)));
+    return str_replace(" ","_", trim($string));
  }
  function username($id){
     $comment = User::where('id',$id)->get('name');

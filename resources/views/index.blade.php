@@ -1,15 +1,16 @@
 @extends('layout.main')
-{{-- @dd($popularPosts) --}}
+{{-- @dd($editors_pick) --}}
 <!-- start of banner -->
 @php
     $category = implode(',',$category);
 @endphp
 @section('banner')
-  <x-homebanner data={{$category}} />
+  <x-homebanner data={{$category}}/>
 @stop
 <!-- end of banner -->
 
 @section('content')
+
 
 <section class="section pb-0">
   <div class="container">

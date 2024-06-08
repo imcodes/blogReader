@@ -48,25 +48,9 @@ Route::post('/create-post',[PostController::class,'createblogmedia'])->name('cre
 Route::post('/search',[FrontpageController::class,'search'])->name('search');
 
 //END OF FRONTEND ROUTES
-Route::name('moderator.')->prefix('moderator')->middleware(['auth','admin.super'])->group(function(){
-    Route::get('/',[administrationController::class,'index'])->name('dashboard');
 
-
-    //POST ROUTES
-    Route::prefix('post')->name('post.')->group(function(){
-        Route::get('/',[administrationController::class,'posts'])->name('index');
-        Route::get('/create',[PostController::class,'createPost'])->name('create');
-    });
-
-    //CATEGORY ROUTES
-    Route::prefix('category')->name('category.')->group(function(){
-        Route::get('/',[])->name('index');
-    });
-});
-Route::prefix('profile')->name('profile.')->group(function(){
-    Route::get('/{id}',[profileController::class,'index'])->name('index');
-});
-Route::delete('/delete/{id}',[administrationController::class,'deleteuser'])->name('deleteuser');
+Route::put('/edit-profile',[AuthController::class,'edit_profile'])->name('edit_profile');
+// Route::delete('/delete/{id}',[administrationController::class,'deleteuser'])->name('deleteuser');
 Route::get('/category/{name}',[CategoryController::class,'view_categories'])->name('category');
 Route::get('/author/{name}',[FrontpageController::class,'author'])->name('author');
 

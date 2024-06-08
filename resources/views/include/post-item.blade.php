@@ -31,7 +31,7 @@
 
           </li>
         </ul>
-        <p>{!! substr($post->body,0,20) !!}...</p>
+        <p>{{ substr($post->body,0,20) }}...</p>
         <a href="{{route('blog-details',$post->title.'_'.$post->id)}}" class="btn btn-outline-primary">Read More</a>
       </div>
     </article>

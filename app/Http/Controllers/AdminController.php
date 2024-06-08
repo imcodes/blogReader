@@ -36,7 +36,7 @@ class AdminController extends Controller
         return view('admin.post.index',compact(['pageTitle']));
     }
     public function users(){
-        $user = User::where('user_level','>',0)->orderBy('id','desc')->get();
+        $user = User::where('user_level','>',Auth::user()->user_level)->orderBy('id','desc')->get();
 
         return view('admin.control.user',compact(['user']));
     }
@@ -49,14 +49,17 @@ class AdminController extends Controller
        $users = DB::select("SELECT id from users where user_level > ?",[Auth::user()->user_level]);
        $i =0;
        foreach ($users as $key) {
-           # code...
            $user[$i] = $key->id;
            $i++;
         }
         // dd($user);
-       $blogs = Blog::where('user_id','=',$user)->orderBy('created_at','desc')->paginate(20);
-        // dd($blogs);
-       return view('admin.control.blogs',compact(['blogs']));
+       $blogs = Blog::whereIn('user_id',$user)->orderBy('created_at','desc')->paginate(20);
+    //    dd($blogs);
+       if(count($blogs) > 0){
+
+           return view('admin.control.blogs',compact(['blogs']));
+       }
+       return view('admin.control.blogs');
     }
     public function management_page($id){
         $user = User::find($id);
@@ -123,7 +126,10 @@ public function delete_blog($id){
     $Blog=Blog::find($id);
     // dd($Blog);
     $Blog->delete();
-    return redirect()->route('admin.blog.index');
+
+        return redirect()->route('admin.blog.index');
+
+
 }
 public function editors_pick($id){
     DB::update("UPDATE blogs set editors_pick = ? ",[false]);
@@ -133,6 +139,10 @@ public function editors_pick($id){
         'editors_pick'=> true,
     ]
     );
+    return redirect()->back();
+}
+public function trash_blog($id){
+    DB::update('UPDATE blogs set deleted_at = ? where user_id = ?',[now(),$id]);
     return redirect()->back();
 }
 }

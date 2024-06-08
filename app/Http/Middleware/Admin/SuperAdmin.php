@@ -16,11 +16,11 @@ class SuperAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $isSuperAdmin = (Auth::user()->user_role == 'admin' && Auth::user()->user_level == 0) ? true : false;
+        $isSuperAdmin = (Auth::user()->user_role == 'admin' && Auth::user()->user_level == 0 ) ? true : false;
         if(!$isSuperAdmin){
             return response('You are forbidden from accessing this resource','404');
         }
-        
+
         return $next($request);
     }
 }

@@ -13,6 +13,9 @@
 <link rel="icon" href="{{ asset('images/favicon.png')}}" type="image/x-icon">
 @endpush
 @section('main')
+{{-- @dd($blogs); --}}
+
+@if(count($blogs) > 0)
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card overflow-scroll w-100 w-md-full">
       <div class="card-body">
@@ -96,22 +99,28 @@
   <script>
 
         let replace = (id) =>{
-            window.location.replace('/admin-panel/blog/blog/'+id)
+                window.location.replace('/admin-panel/blog/blog/'+id)
+
         }
         let del_insert = (id) =>{
-            document.querySelector(".formbody").innerHTML = `
-            <form action="/admin-panel/blog/delete/${id}" method="post">
-                @method('DELETE')
-             @csrf
-             <p class="card-body">
-                Blogs will be deleted forever
-                </p>
-                    <button class="btn p-1 mx-2 text-danger card-footer" type="submit"><i class='mdi mdi-delete'></i></button>
-                    </form>
-            `
+
+                document.querySelector(".formbody").innerHTML = `
+                <form action="/admin-panel/blog/delete/${id}" method="post">
+                    @method('DELETE')
+                 @csrf
+                 <p class="card-body">
+                    Blogs will be deleted forever
+                    </p>
+                        <button class="btn p-1 mx-2 text-danger card-footer" type="submit"><i class='mdi mdi-delete'></i></button>
+                        </form>
+                `
+
         }
 
   </script>
   @endpush
+@else
+<p>No blogs have been created</p>
+@endif
 
 @stop
