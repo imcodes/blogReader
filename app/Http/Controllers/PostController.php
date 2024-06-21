@@ -49,7 +49,7 @@ class PostController extends Controller
     public function createblogmedia(Request $request){
         // dd($request);
 
-        if($request->hasfile('featured_image') && $request->hasfile('media_files')){
+        if($request->hasfile('featured_image')){
             $imgfile = $request->file('featured_image');
             $mediafile = $request->file('media_files');
             $targetPath = 'blogfiles/';

@@ -7,6 +7,14 @@
 .w-60{
     width: 60vw;
 }
+@media screen and (min-width: 500px) {
+    .ml-20{
+        margin-left: 20vw;
+      }
+      .ml-30{
+        margin-left: 25vw;
+      }
+}
 button{
     cursor: pointer;
 }

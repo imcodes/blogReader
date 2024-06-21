@@ -37,7 +37,7 @@ class Blog extends Model
     }
     public function comment()
     {
-        return $this->hasMany(comment::class);
+        return $this->hasMany(Comment::class);
     }
     public function media_files(){
         return $this->hasMany(MediaFile::class);

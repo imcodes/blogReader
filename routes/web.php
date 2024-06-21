@@ -36,22 +36,22 @@ Route::post('/change-password',[AuthController::class,'validateChangePassword'])
 //END OF AUTH ROUTES
 
 // FRONTEND ROUTES
-Route::get('/',[FrontpageController::class,'index'])->name('home')->middleware(['suspended']);
-Route::get('/about',[FrontpageController::class,'aboutMe'])->name('about-me')->middleware(['suspended']);
-Route::get('/contacts',[FrontpageController::class,'contacts'])->name('contacts')->middleware(['suspended']);
-Route::get('/private-policy',[FrontpageController::class,'privatePolicy'])->name('privacy_policy')->middleware(['suspended']);
-Route::get('/term_and_conditions',[FrontpageController::class,'tAndC'])->name('term-and-conditions')->middleware(['suspended']);
-Route::get('/blog-details/{title}',[ PostController::class,'post'])->name('blog-details')->middleware(['suspended']);
-Route::get('/all-authors',[ FrontpageController::class,'all_authors'])->name('all-authors')->middleware(['suspended']);
-Route::get('/user-dashboard',[dashboardController::class,'index'])->name('user-dashboard')->middleware(['suspended']);
-Route::post('/create-post',[PostController::class,'createblogmedia'])->name('createPost')->middleware(['suspended']);
-Route::post('/search',[FrontpageController::class,'search'])->name('search')->middleware(['suspended']);
+Route::get('/',[FrontpageController::class,'index'])->name('home');
+Route::get('/about',[FrontpageController::class,'aboutMe'])->name('about-me');
+Route::get('/contacts',[FrontpageController::class,'contacts'])->name('contacts');
+Route::get('/private-policy',[FrontpageController::class,'privatePolicy'])->name('privacy_policy');
+Route::get('/term_and_conditions',[FrontpageController::class,'tAndC'])->name('term-and-conditions');
+Route::get('/blog-details/{title}',[ PostController::class,'post'])->name('blog-details');
+Route::get('/all-authors',[ FrontpageController::class,'all_authors'])->name('all-authors');
+Route::get('/user-dashboard',[dashboardController::class,'index'])->name('user-dashboard');
+Route::post('/create-post',[PostController::class,'createblogmedia'])->name('createPost');
+Route::post('/search',[FrontpageController::class,'search'])->name('search');
 
 //END OF FRONTEND ROUTES
 
-Route::put('/edit-profile',[AuthController::class,'edit_profile'])->name('edit_profile')->middleware('suspended');
+Route::put('/edit-profile',[AuthController::class,'edit_profile'])->name('edit_profile');
 // Route::delete('/delete/{id}',[administrationController::class,'deleteuser'])->name('deleteuser');
-Route::get('/category/{name}',[CategoryController::class,'view_categories'])->name('category')->middleware('suspended');
-Route::get('/author/{name}',[FrontpageController::class,'author'])->name('author')->middleware('suspended');
+Route::get('/category/{name}',[CategoryController::class,'view_categories'])->name('category');
+Route::get('/author/{name}',[FrontpageController::class,'author'])->name('author');
 
 Route::post('/comment',[CommentController::class,'store'])->name('comment')->middleware(['auth','suspended']);

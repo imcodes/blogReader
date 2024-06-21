@@ -7,11 +7,11 @@ use App\Models\profile;
 use Illuminate\Support\Facades\Auth;
 
 
- function slug_to_string(string $string){
-    return str_replace("_"," ", trim($string));
+ function slug_to_string(string $string,$delimeter = "_"){
+    return str_replace($delimeter," ", trim($string));
 }
- function string_to_slug(string $string){
-    return str_replace(" ","_", trim($string));
+ function string_to_slug(string $string,$delimeter = "_"){
+    return str_replace(" ",$delimeter, trim($string));
 }
  function username($id){
     $comment = User::where('id',$id)->get('name');

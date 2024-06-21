@@ -89,6 +89,7 @@
             document.querySelector('.formbody').innerHTML =
             `<form action='/admin-panel/blog/category/delete/${id}' method="POST">
                 <div class="modal-body">
+                    <span>Are you sure you want to delete this category</span>
              @method('DELETE')
              @csrf
      </div>

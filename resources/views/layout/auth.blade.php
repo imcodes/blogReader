@@ -30,9 +30,9 @@
             <div class="col-md-8 mx-md-5 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">
+                    <h1 class="card-title ml-30">
                         @stack('auth-title')
-                    </h4>
+                    </h1>
 
                     @yield('form')
 
