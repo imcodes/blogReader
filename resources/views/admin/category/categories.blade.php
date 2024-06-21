@@ -7,8 +7,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9 mx-auto">
-          <h1 class="mb-5">{{ucwords($category[0]->category_name)}}</h1>
-          <p>{{$category[0]->description}}</p>
+          <h1 class="mb-5">{{str_replace('_',' ',ucwords($category[0]->category_name))}}</h1>
+          <p style="font-family:cursive;">{{$category[0]->description}}</p>
         </div>
       </div>
     </div>

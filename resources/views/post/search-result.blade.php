@@ -1,14 +1,12 @@
 @extends('layout.main')
 
-<!--
- // WEBSITE: https://themefisher.com
+
+ {{-- // WEBSITE: https://themefisher.com
  // TWITTER: https://twitter.com/themefisher
  // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
+  GITHUB: https://github.com/themefisher/
 
-
-  <!-- navigation -->
+   navigation --}}
 
 
 @section('content')
@@ -31,10 +29,10 @@
                   </div>
                 </div>
                 <div class="col-md-8">
-                  <h3 class="h4 mb-3"><a class="post-title" href="{{route('blog-details',$item->title.'_'.$item->id)}}">{{$item->title}}</a></h3>
+                  <h3 class="h4 mb-3"><a class="post-title" href="{{route('blog-details',str_replace(' ','-',$item->title).'-'.$item->id)}}">{{$item->title}}</a></h3>
                   <ul class="card-meta list-inline">
                     <li class="list-inline-item">
-                      <a href="{{route('author',$item->user->name."_".$item->user->id)}}" class="card-meta-author">
+                      <a href="{{route('author',str_replace(' ','-',$item->user->name)."-".$item->user->id)}}" class="card-meta-author">
                         <img src="images/john-doe.jpg" alt="John Doe">
                         <span>{{$item->user->name}}</span>
                       </a>
@@ -52,13 +50,13 @@
 
                         <li class="list-inline-item">No category</li>
                         @else
-                        <li class="list-inline-item"><a href="{{route('category',$item->category[0]->category_name)}}">{{$item->category[0]->category_name}}</a></li>
+                        <li class="list-inline-item"><a href="{{route('category',str_replace('_','-',$item->category[0]->category_name))}}">{{$item->category[0]->category_name}}</a></li>
                         @endif
                       </ul>
                     </li>
                   </ul>
-                  <p>{!!substr($item->body,0,40)!!}</p>
-                  <a href="{{route('blog-details',$item->title.'_'.$item->id)}}" class="btn btn-outline-primary">Read More</a>
+                  <p>{!!substr(strip_tags($item->body),0,200)!!}...</p>
+                  <a href="{{route('blog-details',str_replace(' ','-',$item->title).'-'.$item->id)}}" class="btn btn-outline-primary">Read More</a>
                 </div>
               </div>
             </article>

@@ -3,20 +3,20 @@
 {{-- @dd($author) --}}
 <div class="author">
 	<div class="container">
+        @if (count($profile) > 0)
+
 		<div class="row no-gutters justify-content-center">
 			<div class="col-lg-3 col-md-4 mb-4 mb-md-0">
 
-				<img class="author-image" src="https://www.gravatar.com/avatar/df5fe0c7d20b494dd2c68e0d8ef9bbf2?s=320&pg&d=identicon">
+				<img class="author-image" src="{{asset('storage/blogfiles/'.$profile[0]->profile_image)}}">
 
 			</div>
 			<div class="col-md-8 col-lg-6 text-center text-md-left">
 				<h3 class="mb-2">{{ucwords($author[0]->name)}}</h2>
-					<strong class="mb-2 d-block">{{ucwords(str_replace('_',' ',$author[0]->user_role))}} &amp; creator of many post </strong>
+					<strong class="mb-2 d-block">{{ucwords(str_replace('_',' ',$author[0]->user_role))}}</strong>
 					<div class="content">
-						<p>Donec nisi dolor, consequat vel pretium id, auctor in dui. Nam iaculis, neque ac ullamcorper.</p>
-
+                        <p>{{$profile[0]->description}}</p>
 					</div>
-
 					<a class="post-count mb-1" href="#posts"><i class="ti-pencil-alt mr-2"></i><span
 							class="text-primary">{{count($blog)}}</span> Posts by this author</a>
 					<ul class="list-inline social-icons">
@@ -32,6 +32,36 @@
 					</ul>
 			</div>
 		</div>
+        @else
+
+		<div class="row no-gutters justify-content-center">
+			<div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+
+				<img class="author-image" src="">
+
+			</div>
+			<div class="col-md-8 col-lg-6 text-center text-md-left">
+				<h3 class="mb-2">{{ucwords($author[0]->name)}}</h2>
+					<strong class="mb-2 d-block">{{ucwords(str_replace('_',' ',$author[0]->user_role))}}</strong>
+					<div class="content">
+                        <p>no description</p>
+					</div>
+					<a class="post-count mb-1" href="#posts"><i class="ti-pencil-alt mr-2"></i><span
+							class="text-primary">{{count($blog)}}</span> Posts by this author</a>
+					<ul class="list-inline social-icons">
+
+						<li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
+
+						<li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
+
+						<li class="list-inline-item"><a href="#"><i class="ti-github"></i></a></li>
+
+						<li class="list-inline-item"><a href="#"><i class="ti-link"></i></a></li>
+
+					</ul>
+			</div>
+		</div>
+        @endif
 	</div>
 
 	<svg class="author-shape-1" width="39" height="40" viewBox="0 0 39 40" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -3,8 +3,8 @@
     @push('auth-title')
     Login
     @endpush
-    @if (session('status'))
-    <span style="color:red">{{session('status')}}</span>
+    @if (session('error'))
+    <span style="color:#ff0000">{{session('error')}}</span>
     @endif
       <x-form.form :action="route('validate-sign-in')">
         <x-form.input  label="email" type="email" placeholder="your email e.g example@gmail.com" name="email"/>

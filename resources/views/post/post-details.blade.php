@@ -22,11 +22,11 @@
             <div class="post-slider mb-4">
               <img src="{{asset('storage/blogfiles/'.$blog[0]->featured_image)}}" class="card-img" alt="post-thumb">
             </div>
-
+{{-- {{Auth::user()}} --}}
             <h1 class="h2">{{ucwords($blog[0]->title)}} </h1>
             <ul class="card-meta my-3 list-inline">
               <li class="list-inline-item">
-                <a href="author-single.html" class="card-meta-author">
+                <a href="{{route('author',str_replace(' ','-',$blog[0]->user->name)."-".$blog[0]->user->id)}}" class="card-meta-author">
                   <img src="images/john-doe.jpg">
                   <span>{{ucwords($blog[0]->user->name)}}</span>
                 </a>
@@ -36,6 +36,9 @@
               </li>
               <li class="list-inline-item">
                 <i class="ti-calendar"></i>14 jan, 2020
+              </li>
+              <li class="list-inline-item">
+                {{$blog[0]->view_count}} views
               </li>
               <li class="list-inline-item">
                 <ul class="card-meta-tag list-inline">
@@ -71,9 +74,12 @@
                     </div>
                     @endforeach
             </div>
-
+            @guest
+                <a class="btn btn-link" href="{{route('sign-in')}}">Sign-in to comment</a>
+            @endguest
+            @auth
             <div>
-                <h3 class="mb-4">Leave a Reply</h3>
+                <h3 class="mb-4">Leave a Comment</h3>
                 <form method="POST" action="{{route('comment')}}">
                     @csrf
                     <div class="row">
@@ -91,7 +97,7 @@
                 </form>
             </div>
         </div>
-
+        @endauth
       </div>
     </div>
   </section>

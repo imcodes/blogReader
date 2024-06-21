@@ -35,6 +35,12 @@ class CategoryController extends Controller
         $category = Category::where('category_name', $category)->first();
         DB::insert('INSERT INTO blog_category (blog_id,category_id) VALUES (?,?)',[$id,$category->id]);
     }
+    public function Blog_category_update($id,$name){
+        // dd($request->name);
+        $category = Category::where('category_name',$name)->first();
+        // dd($category);
+        DB::update('UPDATE blog_category set category_id = ? where blog_id  = ?', [$category->id,$id]);
+    }
     public function delete_category($id){
         DB::delete('DELETE FROM blog_category where category_id = ?',[$id]);
         $category = Category::find($id);
@@ -42,6 +48,7 @@ class CategoryController extends Controller
         return redirect()->back()->with('success','deleted successfully');
     }
     public function view_categories($name){
+        $name = str_replace('-','_',$name);
         $category = DB::select("SELECT id,category_name,description FROM categories where category_name = ?",[$name]);
         $blogids = DB::select("SELECT blog_id FROM blog_category where category_id = ? ORDER BY created_at desc" ,[$category[0]->id]);
         $i = 0;

@@ -6,9 +6,11 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+// use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class FrontpageController extends Controller
 {
@@ -36,7 +38,10 @@ class FrontpageController extends Controller
 
         return view('index',compact(["pageDescription","category","editors_pick","recentPost",'trendingPost','popularPosts']));
     }
-
+    public function all_authors(){
+        $authors = User::where('user_level','<',5)->get();
+        return view('author-all',compact('authors'));
+    }
     public function aboutMe(){
         $pageTitle = 'About Me';
         $pageDescription = 'Get to know me more';
@@ -62,13 +67,15 @@ class FrontpageController extends Controller
         return view('post.search-result',compact(['result','keyword']));
     }
     public function author($name){
-        $user = explode('_',$name);
+        $user = explode('-',$name);
         $id = end($user);
         $author = User::where('id',$id)->get();
         $blog = Blog::where('user_id',$author[0]->id)->get();
+        $profile = profile::where('userid','=',$id)->get();
+
         // $comment = Comment::where('user_id','=',$author[0]->id,'and','blog_id','=',$blog[0]->id)->get();
         // dd($comment);
-        return view('author',compact('author','blog'));
+        return view('author',compact(['author','blog','profile']));
     }
 
 }

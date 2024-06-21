@@ -7,17 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{env('APP_NAME')}} | {{$pageTitle}} </title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="admin/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="admin/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="{{asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/assets/vendors/css/vendor.bundle.base.css')}}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="admin/assets/css/style.css">
+    <link rel="stylesheet" href="{{asset("admin/assets/css/style.css")}}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" />
   </head>
   <body>
     <header class="navigation fixed-top">
@@ -35,7 +35,7 @@
                     </h4>
 
                     @yield('form')
-                    
+
              </div>
             </div>
             </div>
@@ -44,4 +44,3 @@
     </body>
 
 </html>
-  

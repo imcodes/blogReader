@@ -23,10 +23,10 @@
           </div>
 
           <div class="card-body">
-            <h3 class="h4 mb-3"><a class="post-title" href="{{route('blog-details',$editors_pick[0]->title.'_'.$editors_pick[0]->id)}}">{{$editors_pick[0]->title}}</a></h3>
+            <h3 class="h4 mb-3"><a class="post-title" href="{{route('blog-details',str_replace(' ','-',$editors_pick[0]->title).'-'.$editors_pick[0]->id)}}">{{$editors_pick[0]->title}}</a></h3>
             <ul class="card-meta list-inline">
               <li class="list-inline-item">
-                <a href="{{route('author',$editors_pick[0]->user->name."_".$editors_pick[0]->user->id)}}" class="card-meta-author">
+                <a href="{{route('author',$editors_pick[0]->user->name."-".$editors_pick[0]->user->id)}}" class="card-meta-author">
                   <img src="images/john-doe.jpg">
                   {{-- {{dd($editors_pick[0]->user)}} --}}
                   <span>{{$editors_pick[0]->user->name}}</span>
@@ -51,7 +51,7 @@
               </li>
             </ul>
             <p>{{substr($editors_pick[0]->body,20)}}...</p>
-            <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
+            <a href="{{route('blog-details',str_replace(' ','-',$editors_pick[0]->title).'-'.$editors_pick[0]->id)}}" class="btn btn-outline-primary">Read More</a>
           </div>
         </article>
       </div>
@@ -63,7 +63,7 @@
           <div class="card-body d-flex">
             <img class="card-img-sm" src="{{asset('storage/blogfiles/'.$item->featured_image)}}">
             <div class="ml-3">
-              <h4><a href="{{route('blog-details',$item->title.'_'.$item->id)}}" class="post-title">{{$item->title}}</a></h4>
+              <h4><a href="{{route('blog-details',str_replace(" ","-",$item->title).'-'.$item->id)}}" class="post-title">{{$item->title}}</a></h4>
               <ul class="card-meta list-inline mb-0">
                 <li class="list-inline-item mb-0">
                   <i class="ti-calendar"></i>{{date('d M Y H:i:s',$item->created_at->timestamp)}}
@@ -94,7 +94,7 @@
               <h3 class="h4 mb-3"><a class="post-title" href="{{route('blog-details',$post->title.'_'.$post->id)}}">{{ucwords($post->title)}}</a></h3>
               <ul class="card-meta list-inline">
                 <li class="list-inline-item">
-                  <a href="{{route('author',$post->user->name."_".$post->user->id)}}" class="card-meta-author">
+                  <a href="{{route('author',$post->user->name."-".$post->user->id)}}" class="card-meta-author">
                     <img src="{{asset("images/john-doe.jpg")}}" alt="John Doe">
                     <span>{{$post->user->name}}</span>
                   </a>
@@ -117,7 +117,7 @@
                 </li>
               </ul>
               <p>{!! substr($post->body,0,20) !!}...</p>
-              <a href="{{route('blog-details',$post->title.'_'.$post->id)}}" class="btn btn-outline-primary">Read More</a>
+              <a href="{{route('blog-details',str_replace(' ','-',$post->title).'-'.$post->id)}}" class="btn btn-outline-primary">Read More</a>
             </div>
           </article>
       </div>
@@ -139,6 +139,7 @@
                 @include('include.post-item',['post'=>$post])
 
             @endforeach
+            {{$recentPost->links()}}
          </div>
 
   </div>
