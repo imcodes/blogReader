@@ -16,12 +16,14 @@ use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
     public function post($title){
-        $id = explode("_", $title);
+        $id = explode("-", $title);
         $blog = Blog::with("user","category",'comment')->where("id", end($id))->get();
-        $view = new ViewersController();
         // dd(Auth::user()->id);
+        // dd(auth());
+        if (Auth::check()){
+        $view = new ViewersController();
         $view->viewers($blog[0]->id);
-
+        }
         return view('post.post-details', compact(['blog']));
     }
     // public function search(){
@@ -45,9 +47,9 @@ class PostController extends Controller
         return  view('admin.post.create',['pageTitle'=>$pagetitle,'category'=>$category]);
     }
     public function createblogmedia(Request $request){
+        // dd($request);
 
-
-        if($request->hasfile('featured_image') && $request->hasfile('media_files')){
+        if($request->hasfile('featured_image')){
             $imgfile = $request->file('featured_image');
             $mediafile = $request->file('media_files');
             $targetPath = 'blogfiles/';
@@ -59,7 +61,7 @@ class PostController extends Controller
             session()->put('media_files',$media);
             $this->createblog($request,session('featured_image'),$request->category);
         }
-        return redirect()->back();
+        return redirect()->route('admin.blog.index');
 
         // $this->mediaFiles(session('media_files'));
     }

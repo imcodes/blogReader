@@ -14,14 +14,31 @@
 @endpush
 @section('main')
 {{-- @dd($blogs); --}}
+@if(Auth::user()->user_level < 3)
+
+@if (!$_GET)
+<h2>Blogs from users below your level</h2>
+<a class="btn btn-link my-3 border-none" href="/admin-panel/blog?all_blogs">See all your blogs</a>
+@endif
+@if ($_GET)
+<h2>Your blogs</h2>
+<a class="btn btn-link my-3 border-none" href="/admin-panel/blog">See blogs from all users</a>
+@endif
+
+@endif
 
 @if(count($blogs) > 0)
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card overflow-scroll w-100 w-md-full">
       <div class="card-body">
+        @if(Auth::user()->user_level < 3)
+
         <h4 class="card-title">New blogs</h4>
         <p class="card-description"> All blogs created by users
         </p>
+        @else
+        <h4 class="card-title">Your blogs</h4>
+        @endif
         <table class="table table-hover">
           <thead>
             <tr>
@@ -51,7 +68,7 @@
                   <td>No</td>
                   @endif
                   <td  class=" justify-content-end d-flex">
-                    {{-- <button class="btn btn-link btn-warning p-1 col-3 mx-2 " style="transition:1s ease-in-out;" type="submit" title="add to trashed blogs 'blogs will be deleted permanently after 30 days'  "><i class="mdi mdi-delete"></i></button> --}}
+                    @if (Auth::user()->user_level < 3)
                     @if ($blog->editors_pick != true)
 
                     <form action="{{route('admin.blog.editors_pick',$blog->id)}}" class=" mx-2" method="POST">
@@ -62,7 +79,11 @@
                     @else
                     {{-- <i class="mdi mdi-tooltip-edit" title="Editors pick"></i> --}}
                     @endif
+                    @endif
+                    {{-- <button class="btn btn-link btn-warning p-1 col-3 mx-2 " style="transition:1s ease-in-out;" type="submit" title="add to trashed blogs 'blogs will be deleted permanently after 30 days'  "><i class="mdi mdi-delete"></i></button> --}}
+
                     <button class="btn btn-link text-danger p-1  mx-2 border-0"  type="submit" data-bs-target="#deleteModal" title="Delete Blog  Permanently" data-bs-toggle="modal" onclick="del_insert({{$blog->id}})"><i class='mdi mdi-delete-forever'></i></button>
+                    <a class="btn btn-link text-danger p-1  mx-2 border-0" href="{{route('admin.blog.update_page',$blog->id)}}"><i class=''></i>upd</a>
                     </td>
                 </tr>
               </div>

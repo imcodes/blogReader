@@ -8,23 +8,38 @@
 @endpush
 {{-- <a href="{{route('author',)}}" class="btn btn-primary">My public profile</a> --}}
 <div class="row w-100">
+    @if (count($profile) > 0)
+    <div class="col-12 row justify-content-center mx-4 w-75 card">
+        <div class="col-lg-3 col-md-4 mb-4 mb-md-0 card-img">
 
+            <img class="author-image" src="{{asset('storage/blogfiles/'.$profile[0]->profile_image)}}">
+            <hr>
+        </div>
+        <div class="col-md-8 col-lg-6 text-center text-md-left card-body">
+            <h3 class="mb-2">{{ucwords(Auth::user()->name)}}</h2>
+                <strong class="mb-2 d-block">{{ucwords(str_replace('_',' ',Auth::user()->user_role))}} &amp; creator of many post </strong>
+                <div class="content">
+                    <p>{{$profile[0]->description}}</p>
+                </div>
+
+        </div>
+    </div>
     <div class="col-12 my-2">
         <div class="card">
-            <div class="card-header "><b>Set up your profile</b></div>
+            <div class="card-header "><b>Update your profile</b></div>
             <div class="card-body">
-                <form action="{{route('admin.profile.update_profile')}}" method="POST">
+                <form action="{{route('admin.profile.update_profile')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div>
                         <b> Add your profile image:</b>
                     <div class="container" style="width:364px;">
-                    <input name="profile_image" type="file" class="dropify" data-default-file="url_of_your_file" data-allowed-file-extensions="png jpg jpeg" />
+                    <input type="file" name="profile_image"  class="dropify"  data-allowed-file-extensions="png jpg jpeg" />
                     </div>
                     </div>
-                    
+
                     <div class="container">
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Bio</label>
                           <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                         </div>
                     </div>
@@ -33,6 +48,35 @@
             </div>
         </div>
     </div>
+    @else
+    <div class="col-12 my-2">
+        <div class="card">
+            <div class="card-header "><b>Set up your profile</b></div>
+            <div class="card-body">
+                <form action="{{route('admin.profile.setup_profile')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div>
+                        <b> Add your profile image:</b>
+                    <div class="container" style="width:364px;">
+                    <input type="file" name="profile_image"  class="dropify"  data-allowed-file-extensions="png jpg jpeg" />
+                    </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="form-group">
+                            <label for="description">Bio</label>
+                          <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Done</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endif
+
+
+
 
     <div class="col-12 my-2">
         <div class="card">
@@ -59,9 +103,8 @@
     </div>
     <div class="col-12 my-2">
         <div class="card">
-
             <div class="card-header "> <b>Change your password</b></div>
-            <div class="bg-primary badge badge-primary badge-pill p-1 my-2">{{session('success')}}</div>
+            <div class="bg-primary badge badge-primary badge-pill p-1 my-2">{{session('response')}}</div>
             <form action="{{route('admin.profile.change_password')}}" method="POST" class="card-body">
                 @method("PUT")
                 @csrf

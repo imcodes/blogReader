@@ -41,8 +41,8 @@ Route::get('/about',[FrontpageController::class,'aboutMe'])->name('about-me');
 Route::get('/contacts',[FrontpageController::class,'contacts'])->name('contacts');
 Route::get('/private-policy',[FrontpageController::class,'privatePolicy'])->name('privacy_policy');
 Route::get('/term_and_conditions',[FrontpageController::class,'tAndC'])->name('term-and-conditions');
-Route::get('/blog-details/{title}',[ PostController::class,'post'])->name('blog-details')->middleware('auth');
-// Route::get('/search-results',[ PostController::class,'search'])->name('search-result');
+Route::get('/blog-details/{title}',[ PostController::class,'post'])->name('blog-details');
+Route::get('/all-authors',[ FrontpageController::class,'all_authors'])->name('all-authors');
 Route::get('/user-dashboard',[dashboardController::class,'index'])->name('user-dashboard');
 Route::post('/create-post',[PostController::class,'createblogmedia'])->name('createPost');
 Route::post('/search',[FrontpageController::class,'search'])->name('search');
@@ -54,4 +54,4 @@ Route::put('/edit-profile',[AuthController::class,'edit_profile'])->name('edit_p
 Route::get('/category/{name}',[CategoryController::class,'view_categories'])->name('category');
 Route::get('/author/{name}',[FrontpageController::class,'author'])->name('author');
 
-Route::post('/comment',[CommentController::class,'store'])->name('comment')->middleware('auth');
+Route::post('/comment',[CommentController::class,'store'])->name('comment')->middleware(['auth','suspended']);

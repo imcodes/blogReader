@@ -9,17 +9,18 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::name('admin.')->middleware(['auth'])->group(function () {
+Route::name('admin.')->middleware(['auth','suspended'])->group(function () {
     Route::get('/',[AdminController::class,'index'])->name('dashboard');
 
 
     //BLOG ROUTES
     Route::prefix('blog')->name('blog.')->group(function(){
-        Route::get('/',[AdminController::class,'blog'])->name('index')->middleware('mod');
-        Route::get('/blog/{id}',[AdminController::class,'blogpage'])->name('blog')->middleware('mod');
+        Route::get('/',[AdminController::class,'blog'])->name('index')->middleware('author');
+        Route::get('/blog/{id}',[AdminController::class,'blogpage'])->name('blog')->middleware('author');
         Route::get('/create',[PostController::class,'createPost'])->name('create')->middleware('author');
         Route::delete('/delete/{id}',[AdminController::class,'delete_blog'])->name('delete')->middleware('author');
-        Route::put('update/{id}',[AdminController::class,'update_blog'])->name('update')->middleware('author');
+        Route::get('update/{id}',[AdminController::class,'update_blog_page'])->name('update_page')->middleware('author');
+        Route::put('update/{id}',[AdminController::class,'updateblogmedia'])->name('update')->middleware('author');
         Route::put('editors_pick/{id}',[AdminController::class,'editors_pick'])->name('editors_pick')->middleware('mod');
         Route::put('change_category/{name}',[PostController::class,'changeBlogCategory'])->name('change_category')->middleware('mod');
 
@@ -45,7 +46,8 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::prefix('profile')->name('profile.')->group(function(){
         Route::get('/{id}',[profileController::class,'index'])->name('index');
         Route::put('/change-password',[profileController::class,'change_password'])->name('change_password');
-        Route::post('/update-profile',[profileController::class,'uploadprofileimg'])->name('update_profile');
+        Route::post('/setup-profile',[profileController::class,'uploadprofileimg'])->name('setup_profile');
+        Route::post('/update-profile',[profileController::class,'updateprofileimg'])->name('update_profile');
     });
 });
 

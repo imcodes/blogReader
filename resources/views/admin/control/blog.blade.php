@@ -4,7 +4,10 @@
     {{-- {{dd($blog[0]->category[0]->category_name)}} --}}
     <div class="w-25 row">
         <a href="{{route('admin.blog.index')}}" class=" col-6 btn btn-link p-1">Go Back &lAarr;</a>
+        @if (Auth::user()->user_level != 4)
+            
         <button data-bs-target="#modal" data-bs-toggle="modal" class="btn btn-primary p-1 col-6">category</button>
+        @endif
     </div>
 
     <div class="row">
@@ -60,6 +63,7 @@
           <script>
             let categoryList = (id) =>{
                 document.querySelector('.formbody').innerHTML = `
+                <button class='btn btn-link btn-sm' style="font-familly:cursive" onclick="back()">back</button>
                 <form action='/admin-panel/blog/change_category/${id}' method='post'>
                     @method('PUT')
                     @csrf
@@ -70,6 +74,13 @@
                     </select>
                     <button class="btn btn-primary">change</button>
                 </form>
+                `
+            }
+            let back = () =>{
+                document.querySelector('.formbody').innerHTML=`
+                <p>Blog belongs to category <b>{{$blog[0]->category[0]->category_name}}</b>,<br>
+                    do you want to change it.</p>
+                    <button class="btn btn-primary btn-sm" onclick="categoryList({{$blog[0]->id}})">yes</button>
                 `
             }
           </script>

@@ -1,7 +1,7 @@
 @extends('layout.admin')
 @section('page-title','Category dashboard')
 @section('main')
-    <div class="row d-flex">
+    {{-- <div class="row d-flex">
 
         <div href="" class="decoration-none col-md-4 c-p">
         <div class=" stretch-card grid-margin">
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    </div>
+    </div> --}}
     <div class="d-flex row justify-content-between p-2">
 
         <x-form.form :action="route('admin.blog.category.new_category')" class="col-md-6 my-3 ">
@@ -89,6 +89,7 @@
             document.querySelector('.formbody').innerHTML =
             `<form action='/admin-panel/blog/category/delete/${id}' method="POST">
                 <div class="modal-body">
+                    <span>Are you sure you want to delete this category</span>
              @method('DELETE')
              @csrf
      </div>

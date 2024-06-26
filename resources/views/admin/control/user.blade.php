@@ -71,6 +71,7 @@
             document.querySelector('.formbody').innerHTML =
             `<form action='/admin-panel/user/delete/${id}' method="POST">
                 <div class="modal-body">
+                    <span>Are you sure you want to delete this user!<br> all their blogs will be deleted</span>
              @method('DELETE')
              @csrf
      </div>

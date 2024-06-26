@@ -57,11 +57,19 @@
 
 
         @auth
-        <li class="nav-item">
-            <form action="{{route('logout')}}" method="POST">
-                @csrf
-                <button type="submit" role="button" class="btn btn-primary btn-sm text-light p-1 px-2 mt-3">logout</button>
-            </form>
+        <li class="nav-item dropdown">
+            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            more <i class="ti-angle-down text-lg ml-1"></i>
+          </a>
+          <div class="dropdown-menu">
+              <a href="{{route('all-authors')}}" class="dropdown-item">Authors</a>
+              <a href="{{route('admin.dashboard')}}" class="dropdown-item">Dashboard</a>
+              <form action="{{route('logout')}}"  method="POST">
+                  @csrf
+                  <button type="submit" role="button" class="btn btn-link btn-sm border-0">logout</button>
+              </form>
+          </div>
         </li>
         @endauth
         @guest

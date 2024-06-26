@@ -49,7 +49,6 @@
         <div class="border-bottom">
           <h6 class="font-weight-normal mb-3"> <i class="mdi mdi-face"></i><a href="{{route('admin.profile.index',Auth::user()->id)}}"> Profile</a></h6>
         </div>
-        <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
 
       </span>
     </li>
@@ -209,8 +208,8 @@
       </a>
       <div class="collapse" id="blog-links">
         <ul class="nav flex-column sub-menu">
-          {{-- <li class="nav-item"> <a class="nav-link" href="{{route('author.blog.index')}}"> View</a></li> --}}
-          <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.create')}}">Create</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.index')}}"> View</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.create')}}">Create</a></li>
           {{-- <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.category.index')}}">Category</a></li> --}}
 
           {{-- <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.category')}}">Category</a></li> --}}
